@@ -10,7 +10,6 @@ URL:		http://www.phystech.com/download/dhcpcd.html
 Source0:	ftp://sunsite.unc.edu/pub/Linux/system/network/daemons/dhcpcd-%{rversion}.tar.bz2
 Patch1:		dhcpcd-1.3.22-pl4-resolvrdv.patch
 Requires(post): rpm-helper
-BuildRoot:	%{_tmppath}/%{name}-%{version}-%{release}-buildroot
 
 %description
 dhcpcd is an implementation of the DHCP client specified in
