@@ -2,7 +2,7 @@
 Summary:	DHCPC Daemon
 Name:		dhcpcd
 Version:	3.1.8
-Release:	%mkrel 1
+Release:	%mkrel 2
 License:	GPL
 Group:		System/Servers
 URL:		http://dhcpcd.berlios.de/
