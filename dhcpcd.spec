@@ -1,14 +1,13 @@
-
-Summary:	DHCPC Daemon
+Summary:	DHCP Client Daemon
 Name:		dhcpcd
-Version:	3.1.8
-Release:	%mkrel 3
-License:	GPL
+Version:	4.0.2
+Release:	%mkrel 1
+License:	BSD-Like
 Group:		System/Servers
 URL:		http://dhcpcd.berlios.de/
 Source0:	http://prdownload.berlios.de/dhcpcd/%{name}-%{version}.tar.bz2
 Requires(post): rpm-helper
-BuildRoot:	%{_tmppath}/%{name}-%{version}
+BuildRoot:	%{_tmppath}/%{name}-%{version}-%{release}-buildroot
 
 %description
 dhcpcd is an implementation of the DHCP client specified in
@@ -21,14 +20,18 @@ it is running. It also tries to renew the lease time according to RFC1541 or
 draft-ietf-dhc-dhcp-09.
 
 %prep
+
 %setup -q
 
 %build
-%make
+%serverbuild
+
+%make LIBEXECDIR="/%{_lib}" CFLAGS="$CFLAGS -DCMDLINE_COMPAT"
 
 %install
 rm -rf %{buildroot}
-%makeinstall_std
+
+%makeinstall_std LIBEXECDIR="/%{_lib}"
 
 mkdir -p %{buildroot}/var/log
 touch %{buildroot}/var/log/%{name}.log
@@ -44,8 +47,13 @@ rm -rf %{buildroot}
 
 %files
 %defattr(-,root,root)
-%doc README ChangeLog
-#%config(noreplace) %{_sysconfdir}/dhcpc/*
+%doc README
+%config(noreplace) %{_sysconfdir}/dhcpcd.conf
 /sbin/dhcpcd
+%dir /%{_lib}/dhcpcd-hooks
+/%{_lib}/dhcpcd-hooks/*
+/%{_lib}/dhcpcd-run-hooks
+%{_mandir}/man5/dhcpcd.conf.5*
 %{_mandir}/man8/dhcpcd.8*
+%{_mandir}/man8/dhcpcd-run-hooks.8*
 %ghost /var/log/%{name}.log
