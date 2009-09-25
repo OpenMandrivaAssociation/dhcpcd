@@ -1,6 +1,6 @@
 Summary:	DHCP Client Daemon
 Name:		dhcpcd
-Version:	5.0.5
+Version:	5.1.1
 Release:	%mkrel 1
 License:	BSD-Like
 Group:		System/Servers
@@ -24,6 +24,7 @@ draft-ietf-dhc-dhcp-09.
 %setup -q
 
 %build
+%configure2_5x --bindir=/sbin
 %serverbuild
 
 %make LIBEXECDIR="/%{_lib}" CFLAGS="$CFLAGS -DCMDLINE_COMPAT"
