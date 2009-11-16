@@ -1,7 +1,7 @@
 Summary:	DHCP Client Daemon
 Name:		dhcpcd
 Version:	5.1.1
-Release:	%mkrel 1
+Release:	%mkrel 2
 License:	BSD-Like
 Group:		System/Servers
 URL:		http://dhcpcd.berlios.de/
@@ -24,15 +24,17 @@ draft-ietf-dhc-dhcp-09.
 %setup -q
 
 %build
-%configure2_5x --bindir=/sbin
+%configure2_5x	--bindir=/sbin \
+		--libdir=/%{_lib} \
+		--libexecdir=/%{_lib}
 %serverbuild
 
-%make LIBEXECDIR="/%{_lib}" CFLAGS="$CFLAGS -DCMDLINE_COMPAT"
+%make
 
 %install
 rm -rf %{buildroot}
 
-%makeinstall_std LIBEXECDIR="/%{_lib}"
+%makeinstall_std
 
 mkdir -p %{buildroot}/var/log
 touch %{buildroot}/var/log/%{name}.log
