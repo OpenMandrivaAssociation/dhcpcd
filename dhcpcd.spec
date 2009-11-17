@@ -12,14 +12,11 @@ Requires(post): rpm-helper
 BuildRoot:	%{_tmppath}/%{name}-%{version}-%{release}-buildroot
 
 %description
-dhcpcd is an implementation of the DHCP client specified in
-draft-ietf-dhc-dhcp-09 (when -r option is not specified) and RFC1541 (when -r
-option is specified).
-
-It gets the host information (IP address, netmask, broad- cast address, etc.)
-from a DHCP server and configures the network interface of the machine on which
-it is running. It also tries to renew the lease time according to RFC1541 or
-draft-ietf-dhc-dhcp-09.
+dhcpcd is an RFC2131 compliant DHCP client. It is fully featured and yet
+lightweight: the binary is 60k as reported by size(1) on Linux i386. It has
+support for duplicate address detection, IPv4LL, carrier detection, and a
+merged resolv.conf and ntp.conf for which other DHCP clients require third
+party tools.
 
 %prep
 %setup -q
