@@ -6,6 +6,7 @@ License:	BSD-Like
 Group:		System/Servers
 URL:		http://dhcpcd.berlios.de/
 Source0:	http://prdownload.berlios.de/dhcpcd/%{name}-%{version}.tar.bz2
+Patch0:		dhcpcd-5.1.3-fix-initscript-paths.patch
 Requires(post): rpm-helper
 BuildRoot:	%{_tmppath}/%{name}-%{version}-%{release}-buildroot
 
@@ -20,8 +21,8 @@ it is running. It also tries to renew the lease time according to RFC1541 or
 draft-ietf-dhc-dhcp-09.
 
 %prep
-
 %setup -q
+%patch0 -p1 -b .path~
 
 %build
 %configure2_5x	--bindir=/sbin \
