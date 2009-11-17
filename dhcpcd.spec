@@ -7,6 +7,7 @@ Group:		System/Servers
 URL:		http://dhcpcd.berlios.de/
 Source0:	http://prdownload.berlios.de/dhcpcd/%{name}-%{version}.tar.bz2
 Patch0:		dhcpcd-5.1.3-fix-initscript-paths.patch
+Patch1:		dhcpcd-5.1.3-fix-install-permissions.patch
 Requires(post): rpm-helper
 BuildRoot:	%{_tmppath}/%{name}-%{version}-%{release}-buildroot
 
@@ -23,6 +24,7 @@ draft-ietf-dhc-dhcp-09.
 %prep
 %setup -q
 %patch0 -p1 -b .path~
+%patch1 -p1 -b .perms~
 
 %build
 %configure2_5x	--bindir=/sbin \
