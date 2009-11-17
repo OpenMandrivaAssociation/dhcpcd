@@ -26,7 +26,10 @@ draft-ietf-dhc-dhcp-09.
 %build
 %configure2_5x	--bindir=/sbin \
 		--libdir=/%{_lib} \
-		--libexecdir=/%{_lib}
+		--libexecdir=/%{_lib} \
+		--with-hook=ntp.conf \
+		--with-hook=yp.conf \
+		--with-hook=ypbind
 
 %serverbuild
 
