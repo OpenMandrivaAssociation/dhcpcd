@@ -1,12 +1,12 @@
 Summary:	DHCP Client Daemon
 Name:		dhcpcd
-Version:	5.1.4
+Version:	5.2.7
 Release:	%mkrel 1
 License:	BSD-Like
 Group:		System/Servers
 URL:		http://dhcpcd.berlios.de/
 Source0:	http://prdownload.berlios.de/dhcpcd/%{name}-%{version}.tar.bz2
-Patch0:		dhcpcd-5.1.3-fix-initscript-paths.patch
+Patch0:		dhcpcd-5.2.7-fix-initscript-paths.patch
 Patch1:		dhcpcd-5.1.3-fix-install-permissions.patch
 Requires(post): rpm-helper
 BuildRoot:	%{_tmppath}/%{name}-%{version}-%{release}-buildroot
