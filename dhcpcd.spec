@@ -8,7 +8,6 @@ URL:		http://dhcpcd.berlios.de/
 Source0:	http://roy.marples.name/downloads/dhcpcd/%{name}-%{version}.tar.bz2
 Patch1:		dhcpcd-5.1.3-fix-install-permissions.patch
 Requires(post): rpm-helper
-BuildRoot:	%{_tmppath}/%{name}-%{version}-%{release}-buildroot
 
 %description
 dhcpcd is an RFC2131 compliant DHCP client. It is fully featured and yet
@@ -34,8 +33,6 @@ party tools.
 %make
 
 %install
-rm -rf %{buildroot}
-
 %makeinstall_std
 
 mkdir -p %{buildroot}/var/log
@@ -47,11 +44,7 @@ if [ $1 = 1 ]; then # first install
     %create_ghostfile dhcpcd root root 644
 fi
 
-%clean
-rm -rf %{buildroot}
-
 %files
-%defattr(-,root,root)
 %doc README
 %config(noreplace) %{_sysconfdir}/dhcpcd.conf
 /sbin/dhcpcd
