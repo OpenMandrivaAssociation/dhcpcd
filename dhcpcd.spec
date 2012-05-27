@@ -1,13 +1,14 @@
 Summary:	DHCP Client Daemon
 Name:		dhcpcd
 Version:	5.5.6
-Release:	1
+Release:	2
 License:	BSD-Like
 Group:		System/Servers
 URL:		http://dhcpcd.berlios.de/
 Source0:	http://roy.marples.name/downloads/dhcpcd/%{name}-%{version}.tar.bz2
 Patch1:		dhcpcd-5.1.3-fix-install-permissions.patch
 Requires(post): rpm-helper
+Provides:	dhcp-client-daemon
 
 %description
 dhcpcd is an RFC2131 compliant DHCP client. It is fully featured and yet
