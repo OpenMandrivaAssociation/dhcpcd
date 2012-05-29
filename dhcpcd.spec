@@ -4,7 +4,7 @@ Version:	5.5.6
 Release:	2
 License:	BSD-Like
 Group:		System/Servers
-URL:		http://dhcpcd.berlios.de/
+URL:		http://roy.marples.name/projects/dhcpcd
 Source0:	http://roy.marples.name/downloads/dhcpcd/%{name}-%{version}.tar.bz2
 Patch1:		dhcpcd-5.1.3-fix-install-permissions.patch
 Requires(post): rpm-helper
