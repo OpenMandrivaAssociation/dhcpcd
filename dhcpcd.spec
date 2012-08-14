@@ -1,7 +1,7 @@
 Summary:	DHCP Client Daemon
 Name:		dhcpcd
 Version:	5.5.6
-Release:	2
+Release:	3
 License:	BSD-Like
 Group:		System/Servers
 URL:		http://roy.marples.name/projects/dhcpcd
@@ -36,15 +36,6 @@ party tools.
 %install
 %makeinstall_std
 
-mkdir -p %{buildroot}/var/log
-touch %{buildroot}/var/log/%{name}.log
-
-%post
-# Create initial log files so that logrotate doesn't complain
-if [ $1 = 1 ]; then # first install
-    %create_ghostfile dhcpcd root root 644
-fi
-
 %files
 %doc README
 %config(noreplace) %{_sysconfdir}/dhcpcd.conf
@@ -55,4 +46,3 @@ fi
 %{_mandir}/man5/dhcpcd.conf.5*
 %{_mandir}/man8/dhcpcd.8*
 %{_mandir}/man8/dhcpcd-run-hooks.8*
-%ghost /var/log/%{name}.log
