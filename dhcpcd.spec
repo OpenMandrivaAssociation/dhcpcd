@@ -4,7 +4,7 @@ Version:	5.6.2
 Release:	1
 License:	BSD-Like
 Group:		System/Servers
-URL:		http://roy.marples.name/projects/dhcpcd
+Url:		http://roy.marples.name/projects/dhcpcd
 Source0:	http://roy.marples.name/downloads/dhcpcd/%{name}-%{version}.tar.bz2
 Patch1:		dhcpcd-5.1.3-fix-install-permissions.patch
 Requires(post): rpm-helper
@@ -19,15 +19,16 @@ party tools.
 
 %prep
 %setup -q
-%patch1 -p1 -b .perms~
+%apply_patches
 
 %build
-%configure2_5x	--bindir=/sbin \
-		--libdir=/%{_lib} \
-		--libexecdir=/%{_lib} \
-		--with-hook=ntp.conf \
-		--with-hook=yp.conf \
-		--with-hook=ypbind
+%configure2_5x \
+	--bindir=/sbin \
+	--libdir=/%{_lib} \
+	--libexecdir=/%{_lib} \
+	--with-hook=ntp.conf \
+	--with-hook=yp.conf \
+	--with-hook=ypbind
 
 %serverbuild
 
@@ -46,3 +47,4 @@ party tools.
 %{_mandir}/man5/dhcpcd.conf.5*
 %{_mandir}/man8/dhcpcd.8*
 %{_mandir}/man8/dhcpcd-run-hooks.8*
+
