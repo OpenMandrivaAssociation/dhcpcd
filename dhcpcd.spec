@@ -1,6 +1,6 @@
 Summary:	DHCP Client Daemon
 Name:		dhcpcd
-Version:	5.99.7
+Version:	6.0.2
 Release:	1
 License:	BSD-Like
 Group:		System/Servers
