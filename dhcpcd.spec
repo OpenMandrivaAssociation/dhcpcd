@@ -1,11 +1,12 @@
 Summary:	DHCP Client Daemon
 Name:		dhcpcd
-Version:	6.0.3
+Version:	6.0.5
 Release:	1
 License:	BSD-Like
 Group:		System/Servers
 Url:		http://roy.marples.name/projects/dhcpcd
 Source0:	http://roy.marples.name/downloads/dhcpcd/%{name}-%{version}.tar.bz2
+Source1:	dhcpcd.service
 Patch1:		dhcpcd-5.1.3-fix-install-permissions.patch
 Requires(post): rpm-helper
 Provides:	dhcp-client-daemon
@@ -36,6 +37,7 @@ party tools.
 
 %install
 %makeinstall_std
+install -D -m644 %SOURCE1 %{buildroot}%{_unitdir}/%{name}.service
 
 %files
 %doc README
@@ -44,6 +46,7 @@ party tools.
 %dir /%{_lib}/dhcpcd-hooks
 /%{_lib}/dhcpcd-hooks/*
 /%{_lib}/dhcpcd-run-hooks
+%{_unitdir}/%{name}.service
 %{_mandir}/man5/dhcpcd.conf.5*
 %{_mandir}/man8/dhcpcd.8*
 %{_mandir}/man8/dhcpcd-run-hooks.8*
