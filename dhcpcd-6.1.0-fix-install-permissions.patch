@@ -1,0 +1,15 @@
+diff --git a/Makefile.inc b/Makefile.inc
+index 98c55d1..bbef8b0 100644
+--- a/Makefile.inc
++++ b/Makefile.inc
+@@ -2,8 +2,8 @@
+ 
+ PICFLAG?=	-fPIC
+ 
+-BINMODE?=	0555
+-NONBINMODE?=	0444
++BINMODE?=      0755
++NONBINMODE?=   0644
+ MANMODE?=	${NONBINMODE}
+ CONFMODE?=	0644
+ 
