@@ -25,8 +25,8 @@ party tools.
 %build
 %configure2_5x \
 	--bindir=/sbin \
-	--libdir=/%{_lib} \
-	--libexecdir=/%{_lib} \
+	--libdir=/lib \
+	--libexecdir=/lib \
 	--with-hook=ntp.conf \
 	--with-hook=yp.conf \
 	--with-hook=ypbind
@@ -43,9 +43,9 @@ install -D -m644 %SOURCE1 %{buildroot}%{_unitdir}/%{name}.service
 %doc README
 %config(noreplace) %{_sysconfdir}/dhcpcd.conf
 /sbin/dhcpcd
-%dir /%{_lib}/dhcpcd-hooks
-/%{_lib}/dhcpcd-hooks/*
-/%{_lib}/dhcpcd-run-hooks
+%dir /lib/dhcpcd-hooks
+/lib/dhcpcd-hooks/*
+/lib/dhcpcd-run-hooks
 %{_unitdir}/%{name}.service
 %{_mandir}/man5/dhcpcd.conf.5*
 %{_mandir}/man8/dhcpcd.8*
