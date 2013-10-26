@@ -25,7 +25,7 @@ party tools.
 %build
 %configure2_5x \
 	--bindir=/sbin \
-	--libdir=/lib \
+	--libdir=/%{_lib} \
 	--libexecdir=/lib \
 	--with-hook=ntp.conf \
 	--with-hook=yp.conf \
