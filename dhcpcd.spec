@@ -50,4 +50,6 @@ install -D -m644 %SOURCE1 %{buildroot}%{_unitdir}/%{name}.service
 %{_mandir}/man5/dhcpcd.conf.5*
 %{_mandir}/man8/dhcpcd.8*
 %{_mandir}/man8/dhcpcd-run-hooks.8*
-
+/%{_lib}/%{name}
+/%{_lib}/%{name}/dev
+/%{_lib}/%{name}/dev/udev.so
