@@ -11,6 +11,7 @@ Patch1:		dhcpcd-6.1.0-fix-install-permissions.patch
 Patch2:		dhcpcd-6.1.0-fix-resolvconf-usage.patch
 Requires(post): rpm-helper
 Provides:	dhcp-client-daemon
+BuildRequires:	pkgconfig(udev)
 
 %description
 dhcpcd is an RFC2131 compliant DHCP client. It is fully featured and yet
@@ -40,6 +41,16 @@ party tools.
 %makeinstall_std
 install -m644 %{SOURCE1} -D %{buildroot}%{_unitdir}/%{name}.service
 
+# handle the moving of any file hooks not coming with the package
+# as well
+%if "%{_lib}" == "lib64"
+%post
+if [ -d /lib64/dhcpcd-hooks ]; then
+	mv /lib64/dhcpcd-hooks/* /lib/dhcpcd-hooks
+	rmdir /lib64/dhcpcd-hooks/
+fi
+%endif
+
 %files
 %doc README
 %config(noreplace) %{_sysconfdir}/dhcpcd.conf
@@ -51,6 +62,6 @@ install -m644 %{SOURCE1} -D %{buildroot}%{_unitdir}/%{name}.service
 %{_mandir}/man5/dhcpcd.conf.5*
 %{_mandir}/man8/dhcpcd.8*
 %{_mandir}/man8/dhcpcd-run-hooks.8*
-/%{_lib}/%{name}
-/%{_lib}/%{name}/dev
+%dir /%{_lib}/%{name}
+%dir /%{_lib}/%{name}/dev
 /%{_lib}/%{name}/dev/udev.so
