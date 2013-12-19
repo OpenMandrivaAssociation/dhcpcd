@@ -8,8 +8,10 @@ Url:		http://roy.marples.name/projects/dhcpcd
 Source0:	http://roy.marples.name/downloads/dhcpcd/%{name}-%{version}.tar.bz2
 Source1:	dhcpcd.service
 Patch1:		dhcpcd-6.1.0-fix-install-permissions.patch
+Patch2:		dhcpcd-6.1.0-fix-resolvconf-usage.patch
 Requires(post): rpm-helper
 Provides:	dhcp-client-daemon
+BuildRequires:	pkgconfig(udev)
 
 %description
 dhcpcd is an RFC2131 compliant DHCP client. It is fully featured and yet
@@ -26,7 +28,7 @@ party tools.
 %configure2_5x \
 	--bindir=/sbin \
 	--libdir=/%{_lib} \
-	--libexecdir=/%{_lib} \
+	--libexecdir=/lib \
 	--with-hook=ntp.conf \
 	--with-hook=yp.conf \
 	--with-hook=ypbind
@@ -37,17 +39,29 @@ party tools.
 
 %install
 %makeinstall_std
-install -D -m644 %SOURCE1 %{buildroot}%{_unitdir}/%{name}.service
+install -m644 %{SOURCE1} -D %{buildroot}%{_unitdir}/%{name}.service
+
+# handle the moving of any file hooks not coming with the package
+# as well
+%if "%{_lib}" == "lib64"
+%post
+if [ -d /lib64/dhcpcd-hooks ]; then
+	mv /lib64/dhcpcd-hooks/* /lib/dhcpcd-hooks
+	rmdir /lib64/dhcpcd-hooks/
+fi
+%endif
 
 %files
 %doc README
 %config(noreplace) %{_sysconfdir}/dhcpcd.conf
 /sbin/dhcpcd
-%dir /%{_lib}/dhcpcd-hooks
-/%{_lib}/dhcpcd-hooks/*
-/%{_lib}/dhcpcd-run-hooks
+%dir /lib/dhcpcd-hooks
+/lib/dhcpcd-hooks/*
+/lib/dhcpcd-run-hooks
 %{_unitdir}/%{name}.service
 %{_mandir}/man5/dhcpcd.conf.5*
 %{_mandir}/man8/dhcpcd.8*
 %{_mandir}/man8/dhcpcd-run-hooks.8*
-
+%dir /%{_lib}/%{name}
+%dir /%{_lib}/%{name}/dev
+/%{_lib}/%{name}/dev/udev.so
