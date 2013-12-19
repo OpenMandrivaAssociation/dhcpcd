@@ -1,12 +1,13 @@
 Summary:	DHCP Client Daemon
 Name:		dhcpcd
 Version:	6.1.0
-Release:	5
+Release:	6
 License:	BSD-Like
 Group:		System/Servers
 Url:		http://roy.marples.name/projects/dhcpcd
 Source0:	http://roy.marples.name/downloads/dhcpcd/%{name}-%{version}.tar.bz2
 Source1:	dhcpcd.service
+Source2:	dhcpcd-tmpfiles.conf
 Patch1:		dhcpcd-6.1.0-fix-install-permissions.patch
 Patch2:		dhcpcd-6.1.0-fix-resolvconf-usage.patch
 Requires(post): rpm-helper
@@ -29,6 +30,7 @@ party tools.
 	--bindir=/sbin \
 	--libdir=/%{_lib} \
 	--libexecdir=/lib \
+	--rundir=/run/dhcpcd \
 	--with-hook=ntp.conf \
 	--with-hook=yp.conf \
 	--with-hook=ypbind
@@ -40,6 +42,7 @@ party tools.
 %install
 %makeinstall_std
 install -m644 %{SOURCE1} -D %{buildroot}%{_unitdir}/%{name}.service
+install -m644 %{SOURCE2} -D %{buildroot}%{_tmpfilesdir}/%{name}.conf
 
 # handle the moving of any file hooks not coming with the package
 # as well
@@ -59,6 +62,7 @@ fi
 /lib/dhcpcd-hooks/*
 /lib/dhcpcd-run-hooks
 %{_unitdir}/%{name}.service
+%{_tmpfilesdir}/%{name}.conf
 %{_mandir}/man5/dhcpcd.conf.5*
 %{_mandir}/man8/dhcpcd.8*
 %{_mandir}/man8/dhcpcd-run-hooks.8*
