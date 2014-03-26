@@ -10,6 +10,7 @@ Source1:	dhcpcd.service
 Patch1:		dhcpcd-6.1.0-fix-install-permissions.patch
 Requires(post): rpm-helper
 Provides:	dhcp-client-daemon
+BuildRequires:	pkgconfig(udev)
 
 %description
 dhcpcd is an RFC2131 compliant DHCP client. It is fully featured and yet
