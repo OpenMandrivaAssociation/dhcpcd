@@ -1,2 +1,4 @@
-sources:
+removed_sources:
   dhcpcd-6.3.2.tar.bz2: ff8ef22b7305795eff52b8b41b81e2999a5923ff
+sources:
+  dhcpcd-6.9.3.tar.xz: f205894d3d2d505be08fc8b6b5445ac69319244d
