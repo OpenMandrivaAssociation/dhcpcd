@@ -1,12 +1,12 @@
---- dhcpcd-6.1.0/dhcpcd-hooks/20-resolv.conf~	2013-10-27 18:17:34.753380610 +0100
-+++ dhcpcd-6.1.0/dhcpcd-hooks/20-resolv.conf	2013-10-27 18:17:50.743600230 +0100
-@@ -126,7 +126,8 @@ add_resolv_conf()
+--- dhcpcd-7.0.0/hooks/20-resolv.conf.0002~	2018-01-04 02:00:13.782214660 +0100
++++ dhcpcd-7.0.0/hooks/20-resolv.conf	2018-01-04 02:04:15.720774220 +0100
+@@ -165,7 +165,8 @@ add_resolv_conf()
  	done
- 	if type resolvconf >/dev/null 2>&1; then
+ 	if type "$resolvconf" >/dev/null 2>&1; then
  		[ -n "$ifmetric" ] && export IF_METRIC="$ifmetric"
--		printf %s "$conf" | resolvconf -a "$ifname"
+-		printf %s "$conf" | "$resolvconf" -a "$ifname"
 +		# resolvconf doesn't support multiple arguments, that's why it's run twice
-+		printf %s "$conf" | resolvconf -a "$ifname" && resolvconf -u
++		printf %s "$conf" | "$resolvconf" -a "$ifname" && "$resolvconf" -u
  		return $?
  	fi
  

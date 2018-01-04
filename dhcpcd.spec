@@ -1,6 +1,6 @@
 Summary:	DHCP Client Daemon
 Name:		dhcpcd
-Version:	6.9.3
+Version:	7.0.0
 Release:	1
 License:	BSD-Like
 Group:		System/Servers
@@ -55,12 +55,12 @@ fi
 %endif
 
 %files
-%doc README
 %config(noreplace) %{_sysconfdir}/dhcpcd.conf
 /sbin/dhcpcd
 %dir /lib/dhcpcd-hooks
 /lib/dhcpcd-hooks/*
 /lib/dhcpcd-run-hooks
+%{_datadir}/dhcpcd/hooks
 %{_unitdir}/%{name}.service
 %{_tmpfilesdir}/%{name}.conf
 %{_mandir}/man5/dhcpcd.conf.5*
