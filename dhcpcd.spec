@@ -1,6 +1,9 @@
+# For udev plugin
+%global _disable_ld_no_undefined 1
+
 Summary:	DHCP Client Daemon
 Name:		dhcpcd
-Version:	7.0.2
+Version:	7.0.3
 Release:	1
 License:	BSD-Like
 Group:		System/Servers
