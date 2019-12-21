@@ -26,10 +26,10 @@ party tools.
 
 %prep
 %setup -q
-%apply_patches
+%autopatch -p1
 
 %build
-%configure2_5x \
+%configure \
 	--bindir=/sbin \
 	--libdir=/%{_lib} \
 	--libexecdir=/lib \
@@ -40,7 +40,7 @@ party tools.
 
 %serverbuild
 
-%make
+%make_build
 
 %install
 %makeinstall_std
