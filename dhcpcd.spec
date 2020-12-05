@@ -3,7 +3,7 @@
 
 Summary:	DHCP Client Daemon
 Name:		dhcpcd
-Version:	9.2.0
+Version:	9.3.4
 Release:	1
 License:	BSD-Like
 Group:		System/Servers
@@ -43,7 +43,7 @@ party tools.
 %make_build
 
 %install
-%makeinstall_std
+%make_install
 install -m644 %{SOURCE1} -D %{buildroot}%{_unitdir}/%{name}.service
 install -m644 %{SOURCE2} -D %{buildroot}%{_tmpfilesdir}/%{name}.conf
 
