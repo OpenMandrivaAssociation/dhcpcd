@@ -1,15 +1,14 @@
-diff --git a/Makefile.inc b/Makefile.inc
-index 98c55d1..bbef8b0 100644
---- a/Makefile.inc
-+++ b/Makefile.inc
+diff -uraN dhcpcd-9.3.4/Makefile.inc omv-dhcpcd-9.3.4/Makefile.inc
+--- dhcpcd-9.3.4/Makefile.inc	2020-11-28 15:12:59.000000000 +0100
++++ omv-dhcpcd-9.3.4/Makefile.inc	2020-12-05 19:58:43.994893191 +0100
 @@ -2,8 +2,8 @@
  
  PICFLAG?=	-fPIC
  
 -BINMODE?=	0555
 -NONBINMODE?=	0444
-+BINMODE?=      0755
-+NONBINMODE?=   0644
++BINMODE?=	0755
++NONBINMODE?=	0644
  MANMODE?=	${NONBINMODE}
  CONFMODE?=	0644
- 
+ DBMODE?=	0750
