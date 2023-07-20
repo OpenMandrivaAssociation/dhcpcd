@@ -3,12 +3,12 @@
 
 Summary:	DHCP Client Daemon
 Name:		dhcpcd
-Version:	9.4.1
-Release:	3
+Version:	10.0.2
+Release:	1
 License:	BSD-Like
 Group:		System/Servers
 Url:		http://roy.marples.name/projects/dhcpcd
-Source0:	http://roy.marples.name/downloads/dhcpcd/%{name}-%{version}.tar.xz
+Source0:	https://github.com/NetworkConfiguration/dhcpcd/releases/download/v%{version}/dhcpcd-%{version}.tar.xz
 Source1:	dhcpcd.service
 Source2:	dhcpcd-tmpfiles.conf
 Patch1:		dhcpcd-6.1.0-fix-install-permissions.patch
