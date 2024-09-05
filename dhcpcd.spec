@@ -3,7 +3,7 @@
 
 Summary:	DHCP Client Daemon
 Name:		dhcpcd
-Version:	10.0.8
+Version:	10.0.10
 Release:	1
 License:	BSD-Like
 Group:		System/Servers
