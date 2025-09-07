@@ -4,7 +4,7 @@ Wants=network.target
 Before=network.target
 
 [Service]
-ExecStart=/sbin/dhcpcd -q --nobackground
+ExecStart=/usr/bin/dhcpcd -q --nobackground
 
 [Install]
 WantedBy=multi-user.target
