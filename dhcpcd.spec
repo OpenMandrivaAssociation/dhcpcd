@@ -16,6 +16,11 @@ Patch1:		dhcpcd-6.1.0-fix-install-permissions.patch
 Patch2:		dhcpcd-6.1.0-fix-resolvconf-usage.patch
 Requires(post): rpm-helper
 Provides:	dhcp-client-daemon
+BuildRequires:	autoconf
+BuildRequires:	automake
+BuildRequires:	libtool-base
+BuildRequires:	slibtool
+BuildRequires:	make
 BuildRequires:	pkgconfig(udev)
 
 %description
