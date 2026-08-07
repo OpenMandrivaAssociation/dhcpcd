@@ -3,9 +3,9 @@
 
 Summary:	DHCP Client Daemon
 Name:		dhcpcd
-Version:	10.3.2
+Version:	10.5.0
 Release:	1
-License:	BSD-Like
+License:	BSD-2-Clause
 Group:		System/Servers
 Url:		https://roy.marples.name/projects/dhcpcd
 Source0:	https://github.com/NetworkConfiguration/dhcpcd/releases/download/v%{version}/dhcpcd-%{version}.tar.xz
@@ -16,10 +16,6 @@ Patch1:		dhcpcd-6.1.0-fix-install-permissions.patch
 Patch2:		dhcpcd-6.1.0-fix-resolvconf-usage.patch
 Requires(post): rpm-helper
 Provides:	dhcp-client-daemon
-BuildRequires:	autoconf
-BuildRequires:	automake
-BuildRequires:	libtool-base
-BuildRequires:	slibtool
 BuildRequires:	make
 BuildRequires:	pkgconfig(udev)
 
@@ -62,6 +58,7 @@ EOF
 mkdir -p %{buildroot}%{_var}/lib/%{name}
 
 %files
+%license LICENSE
 %config(noreplace) %{_sysconfdir}/dhcpcd.conf
 %{_bindir}/dhcpcd
 %dir %{_libexecdir}/dhcpcd-hooks
